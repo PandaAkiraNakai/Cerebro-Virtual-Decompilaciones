@@ -127,6 +127,10 @@ Resultado en Villa Raíz, Petalia y Ruta 104:
 - ❌ Objetos planos bloqueados (macizos, alfombras de entrada) se levantan cuando no
   deberían.
 
+> [!success] Villa Raíz terminada con prefabs
+> Ver [[Villa Raiz HD-2D]]: casas de dos niveles, árboles 3D, flora con relieve y
+> texturas remasterizadas. Confirma que la tabla de prefabs por metatile funciona.
+
 ### Propuesta de pipeline de mapas
 1. **Tabla de prefabs por metatile** (la pieza central): para cada uno de los 16 698
    metatiles, una entrada `{suelo | fachada | techo | árbol | agua | prop, altura, malla

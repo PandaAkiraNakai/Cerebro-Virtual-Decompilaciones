@@ -33,6 +33,7 @@ Primer proyecto: [[Proyecto Esmeralda ES]] (Pokémon Esmeralda en español, GBA)
   - [[Diferencias ES vs USA]] — qué código cambió en la versión española.
   - [[CalculateBaseDamage]] — primera función analizada a fondo.
 - [[Analisis del port HD-2D]] — port nativo a Linux con gráficos 2.5D estilo Octopath: radiografía del código, punteros de 64 bits, mapas → 3D, prueba de concepto y hoja de ruta.
+  - [[Villa Raiz HD-2D]] — primer mapa acabado: prefabs por metatile, casas de dos niveles, árboles 3D.
 
 ## 📈 Aprendizaje y mejora continua
 
