@@ -78,6 +78,22 @@ Bitácora de muros que rompimos. Si algo falla, busca aquí primero.
 > `p = c + clamp((p − c) / fwidth(p), −0.5, 0.5)`. Con `floor(p)` (el índice del texel) se
 > muestrea en el borde y se mezclan los vecinos: queda borroso.
 
+> [!tip] Hora real en un juego con RTC sin romper los contadores de días
+> En los Pokémon de GBA, `gLocalTime = RTC − localTimeOffset` (el desfase se guarda al poner el
+> reloj al empezar). Para que la hora del día sea la del PC, ignora horas, minutos y segundos
+> del desfase pero **conserva los días**: así bayas y eventos diarios siguen contando igual.
+> Ponlo detrás de una bandera del port para que las pruebas deterministas no cambien.
+
+> [!bug] Llamar cada fotograma a una función de la plataforma que imprime
+> En pokeemerald-native `DBGPRINTF` está siempre activo (`PORTABLE`) y `Platform_GetDateTime`
+> imprime una línea por llamada. Para leer la hora en cada fotograma, añade una función que
+> actualice el reloj interno sin el registro.
+
+> [!tip] El mapa de Hoenn está en un fondo afín de 8 bpp
+> `graphics/pokenav/region_map/map.png` son tiles de 8 bpp y `map.bin` un mapa afín de
+> **1 byte por casilla** (64×64). Si lo lees como mapa de texto (u16 con flips y paleta) sale
+> basura. Los colores: la paleta del propio PNG (el juego la carga en `BG_PLTT_ID(7)`).
+
 ## Shell (torre)
 
 > [!bug] La herramienta Bash es zsh
