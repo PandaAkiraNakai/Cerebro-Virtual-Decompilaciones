@@ -94,6 +94,33 @@ Bitácora de muros que rompimos. Si algo falla, busca aquí primero.
 > **1 byte por casilla** (64×64). Si lo lees como mapa de texto (u16 con flips y paleta) sale
 > basura. Los colores: la paleta del propio PNG (el juego la carga en `BG_PLTT_ID(7)`).
 
+> [!bug] Dibujar el mismo fotograma de la GBA más de una vez avanza el juego
+> En el emulador de pantalla del port, cada línea ejecuta la interrupción de HBlank y los DMA
+> de HBlank (efectos por línea: entradas de combate, ondas). Si dibujas varias capas por
+> fotograma, guarda y restaura los registros de E/S y el estado de los DMA alrededor de cada
+> dibujo extra; si no, el efecto avanza varias líneas por fotograma.
+
+> [!tip] Remasterizar una escena fija: cámara calibrada con la pantalla original
+> Fija la cámara 3D y deriva todo de ella: cada píxel de la pantalla original es un rayo, su
+> corte con el suelo da la posición en el mundo y el tamaño de un píxel a esa profundidad. Así
+> sprites, plataformas y efectos se colocan donde los pone el juego, y su interfaz y sus
+> animaciones 2D cuadran encima. Para que una forma pintada (elipse) coincida con su volumen
+> 3D, proyecta su contorno punto a punto: con perspectiva ya no es la misma forma en el mundo.
+
+> [!tip] Fundidos y tintes de paleta en un render moderno
+> Compara la paleta fundida con la original: con los dos colores más distintos sacas la
+> cantidad y el color del fundido. Si fondos y sprites se funden igual es un fundido de
+> pantalla (aplícalo a la escena entera); si no, es un tinte de un sprite (destello, golpe).
+
+> [!bug] Sprites de combate de Blanco/Negro (2): no salen al decodificar lineal
+> En `a/0/0/4` (20 archivos por especie, LZ11) la imagen fija de 96×96 va en **cuatro
+> bloques de OAM** seguidos (64×64, 32×64, 64×32, 32×32), cada uno en baldosas de 8×8 con
+> mapeo 1D. Decodificada como una sola imagen lineal o en baldosas sale troceada.
+
+> [!bug] Sprites de combate de HeartGold/SoulSilver: datos cifrados
+> Los RGCN de `a/0/0/4` van cifrados con un LCG (`×0x41C64E6D + 0x6073`) sembrado con la
+> primera palabra, hacia adelante. Las especies solo hembra traen vacío el archivo de macho.
+
 ## Shell (torre)
 
 > [!bug] La herramienta Bash es zsh
