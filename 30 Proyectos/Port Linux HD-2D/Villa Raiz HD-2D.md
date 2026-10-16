@@ -54,7 +54,18 @@ las filas de píxeles de `0x219` y `0x232` salen las franjas:
 - Paleta de hojas un 12-20 % más oscura que la GBA: con sol + bloom la original queda
   lima chillón.
 
+## Personajes (commit siguiente)
+- El GBA solo tiene 2 poses por casilla (`sAnim_GoSouth`: paso 8 frames + quieto 8).
+  Se generan intermedios moviendo **el torso 1 px** (filas 0-20 de 32) sin tocar los
+  pies: estirado en el paso de pie, comprimido en el contacto → 4 poses por casilla.
+- Correr: `running.png` con el reparto 5:3 de `sAnim_RunSouth`.
+- NPC con `MOVEMENT_TYPE_WANDER_AROUND`: esperan 32/64/96/128 frames y caminan dentro
+  de `movement_range_x/y`.
+- Los pies van a `y + 0.88` (borde sur de la casilla, como el anclaje del sprite GBA):
+  así las flores de su propia casilla quedan detrás y no "cortan" las piernas.
+- **Lección**: el tramado de oclusión no debe aplicarse a personajes; si no, un NPC
+  delante del jugador se ve cortado en vez de taparlo.
+
 ## Pendiente para este mapa
 - Interiores (casa del jugador, laboratorio) y animación de puertas.
-- NPC animados (ahora es el frame 0) y sombra de contacto del jugador.
 - Flores animadas (el metatile tiene animación de tileset).
