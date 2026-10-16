@@ -1,0 +1,45 @@
+diff --git a/bridge/ghidra/ReaGhidraApplySeeds.java b/bridge/ghidra/ReaGhidraApplySeeds.java
+index d4ee8236e..15f89e859 100644
+--- a/bridge/ghidra/ReaGhidraApplySeeds.java
++++ b/bridge/ghidra/ReaGhidraApplySeeds.java
+@@ -1,10 +1,12 @@
+ import ghidra.app.script.GhidraScript;
+ import ghidra.program.model.address.Address;
+ import ghidra.program.model.address.AddressSpace;
++import ghidra.program.model.lang.Register;
+ import ghidra.program.model.listing.Function;
+ import ghidra.program.model.listing.Program;
+ import ghidra.program.model.mem.MemoryBlock;
+ import ghidra.program.model.symbol.SourceType;
++import java.math.BigInteger;
+ import java.nio.charset.StandardCharsets;
+ import java.nio.file.Files;
+ import java.nio.file.LinkOption;
+@@ -42,6 +44,7 @@ public final class ReaGhidraApplySeeds extends GhidraScript {
+             MessageDigest.getInstance("SHA-256").digest(bytes)
+         );
+         AddressSpace space = currentProgram.getAddressFactory().getDefaultAddressSpace();
++        Register tmode = currentProgram.getRegister("TMode");
+         List<Seed> seeds = new ArrayList<>();
+         for (String line : new String(bytes, StandardCharsets.UTF_8).split("\n")) {
+             if (line.isEmpty()) continue;
+@@ -49,12 +52,18 @@ public final class ReaGhidraApplySeeds extends GhidraScript {
+             if (fields.length < 2 || fields.length > 3 || !fields[0].startsWith("0x")) {
+                 throw new IllegalArgumentException("REA seed snapshot is malformed");
+             }
++            long raw = Long.parseUnsignedLong(fields[0].substring(2), 16);
++            // ARM interworking: an odd code or function address selects Thumb mode.
++            boolean thumb = tmode != null && (raw & 1) == 1 && !fields[1].equals("label");
+             Address address;
+             try {
+-                address = space.getAddress(Long.parseUnsignedLong(fields[0].substring(2), 16));
++                address = space.getAddress(thumb ? raw & ~1L : raw);
+             } catch (ghidra.program.model.address.AddressOutOfBoundsException e) {
+                 address = null;
+             }
++            if (thumb && address != null) {
++                currentProgram.getProgramContext().setValue(tmode, address, address, BigInteger.ONE);
++            }
+             seeds.add(new Seed(address, fields[1], fields.length == 3 ? fields[2] : null));
+         }
+ 
