@@ -41,6 +41,43 @@ Bitácora de muros que rompimos. Si algo falla, busca aquí primero.
 > [!bug] El arranque no está en `0x080000c0`
 > Esmeralda salta a `0x08000204` (`ea00007f`). Verifícalo siempre desensamblando, no de memoria.
 
+## Ports nativos con render propio
+
+> [!bug] Los colores de un PNG de la decomp no coinciden con los del juego
+> Los PNG amplían los 5 bits de la paleta como `c·255/31`; el juego (y el port) como
+> `(c << 3) | (c >> 2)`. Difieren en 1 en varios valores. Si identificas recursos por hash
+> de sus píxeles, convierte a 5 bits y vuelve a ampliar como el juego antes de hashear.
+
+> [!tip] Sustituir recursos sin tocar el juego: hash del fotograma decodificado
+> El port decodifica cada sprite desde la VRAM emulada. El render calcula un hash (FNV-1a
+> 64) de ese RGBA y, si hay una versión nueva con ese hash, la usa; si no, usa la de siempre.
+> Prueba también el hash del reflejo (las vistas de lado suelen ser el mismo fotograma
+> invertido). Un modo de volcado (variable de entorno) guarda los fotogramas sin sustituto,
+> así sabes cuáles faltan.
+
+> [!tip] Texto en alta resolución: registrar glifos y validar contra la imagen
+> Engancha la función que copia cada glifo a la ventana (posición, máscara de la letra,
+> clases de píxel) y las que rellenan, borran o desplazan ventanas. En cada fotograma,
+> valida cada glifo contra la imagen 1x (cada clase de píxel con un solo color). Si cuadra,
+> borra la letra 1x y dibuja encima la de una fuente SDF generada desde la original, con los
+> colores leídos de la pantalla (así respeta fundidos y paletas). Una entrada sobrante no
+> estorba: simplemente no valida.
+
+> [!bug] El registro va un fotograma por delante de lo que se ve
+> Lo que el juego prepara en un fotograma llega a la VRAM en el VBlank (DMA). Si capturas la
+> imagen antes del VBlank y los datos del juego (sprites, glifos) en el mismo momento, no
+> casan: sprites "revueltos" al girar y destellos de la letra vieja al cambiar de página.
+> Captura todo **después** del VBlank.
+
+> [!bug] En el modo de prueba el render solo dibuja en las capturas
+> Si avanzas el reloj del render 1/60 s por llamada, las animaciones casi no avanzan entre
+> capturas. Pásale `dt = capturas_cada / 60`.
+
+> [!tip] "Bilineal nítido" para pixel art ampliado
+> Mide desde la costura entre texels: `c = floor(p + 0.5)` y
+> `p = c + clamp((p − c) / fwidth(p), −0.5, 0.5)`. Con `floor(p)` (el índice del texel) se
+> muestrea en el borde y se mezclan los vecinos: queda borroso.
+
 ## Shell (torre)
 
 > [!bug] La herramienta Bash es zsh
