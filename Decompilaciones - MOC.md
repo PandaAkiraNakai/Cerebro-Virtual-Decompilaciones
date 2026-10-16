@@ -6,7 +6,8 @@ creado: 2026-10-15
 # 🧩 Decompilaciones — Mapa de contenido
 
 Todo lo que aprendemos haciendo **ingeniería inversa y decompilación** de binarios.
-Primer proyecto: [[Proyecto Esmeralda ES]] (Pokémon Esmeralda en español, GBA).
+Primer proyecto: Pokémon Esmeralda en español (GBA). Desde 2026-10-15 continúa en su
+propio vault, ver [[Pokemon Esmeralda - movido a remake-2.5d]].
 
 > [!abstract] Índice maestro
 > Para una visión densa y enrutada (ideal para IA), empieza por [[_INDEX (IA)]].
@@ -29,12 +30,8 @@ Primer proyecto: [[Proyecto Esmeralda ES]] (Pokémon Esmeralda en español, GBA)
 
 ## 🗂️ Proyectos
 
-- [[Proyecto Esmeralda ES]] — estado, identidad de la ROM, funciones estudiadas.
-  - [[Diferencias ES vs USA]] — qué código cambió en la versión española.
-  - [[CalculateBaseDamage]] — primera función analizada a fondo.
-- [[Analisis del port HD-2D]] — port nativo a Linux con gráficos 2.5D estilo Octopath: radiografía del código, punteros de 64 bits, mapas → 3D, prueba de concepto y hoja de ruta.
-  - [[Villa Raiz HD-2D]] — primer mapa acabado: prefabs por metatile, casas de dos niveles, árboles 3D.
-  - [[Musica remasterizada]] — MIDI originales (SC-88Pro) → GM de alta calidad + PSG limpio, bucles sin clics.
+- [[Pokemon Esmeralda - movido a remake-2.5d]] — la decompilación de la ROM española y el
+  port HD-2D viven ahora en el vault **remake-2.5d**.
 
 ## 📈 Aprendizaje y mejora continua
 

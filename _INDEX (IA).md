@@ -12,9 +12,10 @@ proposito: Punto de entrada único y denso para que una IA recorra el vault con 
 
 ## 1. Resumen del dominio (TL;DR)
 Ingeniería inversa de binarios con **REA** (orquestador MCP/CLI) + **Ghidra 12.1.2**
-headless (`/opt/ghidra`). Proyecto activo: **Pokémon Esmeralda ES** (GBA, BPES v0).
+headless (`/opt/ghidra`). Primer proyecto: **Pokémon Esmeralda ES** (GBA, BPES v0), que
+desde 2026-10-15 vive en el vault **remake-2.5d** ([[Pokemon Esmeralda - movido a remake-2.5d]]).
 Como referencia usamos la decomp de pret (`pokeemerald`, versión USA BPEE), que compila
-idéntica en `$HDD/GitHub/pokeemerald`. Portamos sus símbolos a la ROM
+idéntica en `$HDD/Obsidian/remake-2.5d/codigo/pokeemerald`. Portamos sus símbolos a la ROM
 ES por coincidencia de bytes y se los damos a Ghidra como **semillas Thumb**, así el
 pseudocódigo sale con nombres reales.
 
@@ -29,9 +30,7 @@ pseudocódigo sale con nombres reales.
                                         [[REA + Ghidra]] ──► [[Flujo de trabajo]]
                                                                    │
                                                                    ▼
-                                  [[Proyecto Esmeralda ES]] ──► [[CalculateBaseDamage]]
-                                                                   [[Diferencias ES vs USA]]
-                                  [[Analisis del port HD-2D]] (port Linux 2.5D, prueba de concepto)
+                                  [[Pokemon Esmeralda - movido a remake-2.5d]]
 
 Transversal: [[Gotchas y errores resueltos]] · [[Patrones de agbcc]] ·
              [[Bitacora de optimizaciones]] · [[Convenciones]] · [[Recursos y enlaces]]
@@ -42,10 +41,10 @@ Transversal: [[Gotchas y errores resueltos]] · [[Patrones de agbcc]] ·
 
 | Qué | Dónde |
 |---|---|
-| ROM ES (no se copia al vault) | `~/Descargas/Pokemon - Edicion Esmeralda (Spain).gba` |
-| Decomp pret + agbcc | `$HDD/GitHub/{pokeemerald,agbcc}` |
+| ROM ES (no se copia a este vault) | `$HDD/Obsidian/remake-2.5d/codigo/rom/` |
+| Decomp pret + agbcc | `$HDD/Obsidian/remake-2.5d/codigo/{pokeemerald,agbcc}` |
 | Scripts propios (versionados aquí) | `10 Herramientas/scripts/` |
-| Artefactos generados (semillas, snapshot) | `~/.local/share/pokeemerald-es/` |
+| Artefactos generados (semillas, snapshot) | `$HDD/Obsidian/remake-2.5d/codigo/re-artefactos/` |
 | REA (checkout fuente, con parche Thumb) | `~/Documentos/rea` |
 
 ## 4. Comandos de un vistazo
@@ -57,5 +56,5 @@ python3 -I "$S/port_symbols.py" <elf> <rom_ref> <rom_destino> <salida.tsv> # ~3 
 
 ## 5. Estado (2026-10-15)
 - Símbolos portados: **12 901 / 15 853 (81,4 %)**; 95 nombres repetidos (funciones `static`).
-- Funciones estudiadas a fondo: 1 ([[CalculateBaseDamage]]).
+- Funciones estudiadas a fondo: 1 (CalculateBaseDamage, en remake-2.5d).
 - Próximas mejoras: ver [[Bitacora de optimizaciones]] § Pendientes.

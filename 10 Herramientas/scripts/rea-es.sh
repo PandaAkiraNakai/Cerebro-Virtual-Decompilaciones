@@ -4,8 +4,9 @@
 # (~3,5 min); el snapshot solo guarda el perfil de análisis.
 # Uso: rea-es.sh <comando-rea> [args...]   p. ej.: rea-es.sh decompile --procedure Random
 set -euo pipefail
-DATA="$HOME/.local/share/pokeemerald-es"     # artefactos generados (fuera del vault)
-ROM="$HOME/Descargas/Pokemon - Edicion Esmeralda (Spain).gba"
+C="${HDD:-/run/media/$USER/HDD}/Obsidian/remake-2.5d/codigo"   # vault remake-2.5d (fuera de git)
+DATA="$C/re-artefactos"                      # artefactos generados
+ROM="$C/rom/Pokemon - Edicion Esmeralda (Spain).gba"
 
 export GHIDRA_INSTALL_DIR=/opt/ghidra
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk

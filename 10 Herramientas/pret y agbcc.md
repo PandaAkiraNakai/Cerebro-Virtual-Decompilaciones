@@ -11,7 +11,7 @@ byte idéntico** a la ROM original (*matching decomp*). Es nuestra referencia de
 
 ## Montaje (2026-10-15)
 ```sh
-cd $HDD/GitHub
+cd $HDD/Obsidian/remake-2.5d/codigo            # desde 2026-10-15 vive en el vault remake-2.5d
 git clone --depth 1 https://github.com/pret/pokeemerald.git
 git clone --depth 1 https://github.com/pret/agbcc.git
 sudo pacman -S arm-none-eabi-binutils           # as, ld, objcopy, readelf

@@ -9,10 +9,11 @@ Script: `scripts/port_symbols.py`. Lleva los nombres de función de un ELF de re
 (pret, USA) a otra ROM del mismo juego (ES) **sin símbolos**.
 
 ```sh
-G=$HDD/GitHub/pokeemerald
+C=$HDD/Obsidian/remake-2.5d/codigo
+G=$C/pokeemerald
 python3 -I "scripts/port_symbols.py" $G/pokeemerald.elf $G/pokeemerald.gba \
-  "$HOME/Descargas/Pokemon - Edicion Esmeralda (Spain).gba" \
-  ~/.local/share/pokeemerald-es/seeds-es.tsv
+  "$C/rom/Pokemon - Edicion Esmeralda (Spain).gba" \
+  $C/re-artefactos/seeds-es.tsv
 ```
 
 ## Cómo funciona

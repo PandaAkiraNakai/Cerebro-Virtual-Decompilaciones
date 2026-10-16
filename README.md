@@ -2,10 +2,10 @@
 
 Vault de Obsidian con todo lo que voy aprendiendo haciendo **ingeniería inversa y decompilación** de binarios: herramientas, método, conocimiento de cada plataforma, cada función entendida y cada error resuelto. La idea es **aprender, mejorar y optimizar** con cada proyecto: lo que funciona se vuelve método; lo que falla, un gotcha; y cada mejora queda medida.
 
-> Primer proyecto: **Pokémon Esmeralda (ES)** para GBA, analizado con **REA + Ghidra** y comparado con la decomp de [pret/pokeemerald](https://github.com/pret/pokeemerald).
+> Primer proyecto: **Pokémon Esmeralda (ES)** para GBA, analizado con **REA + Ghidra** y comparado con la decomp de [pret/pokeemerald](https://github.com/pret/pokeemerald). Sus notas de proyecto pasaron a un vault propio dedicado a remakes en 2.5D; aquí queda el método general.
 
 <!-- profile-excerpt -->
-Vault Obsidian de **ingeniería inversa y decompilación** — método por capas (identidad → mapa de memoria → símbolos → tipos → lógica), **REA + Ghidra** headless, plataforma **GBA** (ARM7TDMI, Thumb, mapa de memoria), patrones del compilador **agbcc** y una **bitácora de optimizaciones** medida. Primer proyecto: **Pokémon Esmeralda ES**, con el **81 %** de las funciones nombradas portando los símbolos de pret por coincidencia de bytes, y funciones estudiadas contra el C original.
+Vault Obsidian de **ingeniería inversa y decompilación** — método por capas (identidad → mapa de memoria → símbolos → tipos → lógica), **REA + Ghidra** headless, plataforma **GBA** (ARM7TDMI, Thumb, mapa de memoria), patrones del compilador **agbcc** y una **bitácora de optimizaciones** medida. Primer caso de estudio: **Pokémon Esmeralda ES**, con el **81 %** de las funciones nombradas portando los símbolos de pret por coincidencia de bytes.
 <!-- /profile-excerpt -->
 
 ## 🧭 Por dónde empezar
@@ -20,7 +20,7 @@ Vault Obsidian de **ingeniería inversa y decompilación** — método por capas
 | `00 Metodo/` | Flujo de trabajo y convenciones (estados de una función, direcciones, confianza) |
 | `10 Herramientas/` | REA + Ghidra · pret y agbcc · portar símbolos entre versiones · `scripts/` |
 | `20 Plataformas/` | GBA: ARM7TDMI y Thumb · mapa de memoria y cabecera |
-| `30 Proyectos/` | Un subdirectorio por juego/binario, con una nota por función |
+| `30 Proyectos/` | Notas puente a los proyectos (Esmeralda vive en su propio vault) |
 | `40 Aprendizaje/` | Gotchas y errores resueltos · patrones de agbcc · bitácora de optimizaciones |
 | `90 Plantillas/` | Plantillas de función, proyecto y lección |
 
