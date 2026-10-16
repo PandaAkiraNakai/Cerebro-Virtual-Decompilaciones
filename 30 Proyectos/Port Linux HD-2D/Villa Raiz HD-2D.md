@@ -56,8 +56,11 @@ las filas de píxeles de `0x219` y `0x232` salen las franjas:
 
 ## Personajes (commit siguiente)
 - El GBA solo tiene 2 poses por casilla (`sAnim_GoSouth`: paso 8 frames + quieto 8).
-  Se generan intermedios moviendo **el torso 1 px** (filas 0-20 de 32) sin tocar los
-  pies: estirado en el paso de pie, comprimido en el contacto → 4 poses por casilla.
+  **Ojo**: los frames de paso ya traen el cuerpo 1 px más abajo (fila superior 11 vs
+  10 en reposo). El primer intento sumó otro píxel abajo en el contacto y uno arriba
+  en el reposo → la cabeza oscilaba 3 px y el cuello se estiraba (se notaba a simple vista).
+  Solución: intermedio = paso con el torso (filas 0-20) subido 1 px → piernas abiertas
+  con la cabeza a la altura normal. 3 poses por casilla, oscilación de 1 px.
 - Correr: `running.png` con el reparto 5:3 de `sAnim_RunSouth`.
 - NPC con `MOVEMENT_TYPE_WANDER_AROUND`: esperan 32/64/96/128 frames y caminan dentro
   de `movement_range_x/y`.
