@@ -32,6 +32,7 @@ Primer proyecto: [[Proyecto Esmeralda ES]] (Pokémon Esmeralda en español, GBA)
 - [[Proyecto Esmeralda ES]] — estado, identidad de la ROM, funciones estudiadas.
   - [[Diferencias ES vs USA]] — qué código cambió en la versión española.
   - [[CalculateBaseDamage]] — primera función analizada a fondo.
+- [[Analisis del port HD-2D]] — port nativo a Linux con gráficos 2.5D estilo Octopath: radiografía del código, punteros de 64 bits, mapas → 3D, prueba de concepto y hoja de ruta.
 
 ## 📈 Aprendizaje y mejora continua
 

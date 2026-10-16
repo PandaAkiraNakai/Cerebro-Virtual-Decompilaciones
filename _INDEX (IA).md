@@ -31,6 +31,7 @@ pseudocódigo sale con nombres reales.
                                                                    ▼
                                   [[Proyecto Esmeralda ES]] ──► [[CalculateBaseDamage]]
                                                                    [[Diferencias ES vs USA]]
+                                  [[Analisis del port HD-2D]] (port Linux 2.5D, prueba de concepto)
 
 Transversal: [[Gotchas y errores resueltos]] · [[Patrones de agbcc]] ·
              [[Bitacora de optimizaciones]] · [[Convenciones]] · [[Recursos y enlaces]]
